@@ -1,4 +1,4 @@
-# Создание БД, добавление, выбор и удаление элементов.
+# Выбор элементов и функции в SQL запросах
 import sqlite3
 
 connection = sqlite3.connect("not_telegram.db")
@@ -18,7 +18,6 @@ cursor.execute("CREATE INDEX IF NOT EXISTS idx_email ON Users (email)")
 
 for i in range(10):
     i = i + 1
-    cursor.execute("DELETE FROM Users WHERE username = ?", (f"User{i}", ))
     cursor.execute("INSERT INTO Users (username, email, age, balance) VALUES (?, ?, ?, ?)", (f"User{i}", f"example{i}@gmail.com", f"{i * 10}", "1000"))
 
 for i in range(10):
@@ -48,9 +47,3 @@ print(result)
 
 connection.commit()
 connection.close()
-
-# cursor.execute("UPDATE Users SET age = ? WHERE username = ?", (29, "newuser"))
-#
-# cursor.execute("DELETE FROM Users WHERE username = ?", ('newuser{i}', ))
-#
-# cursor.execute("DELETE FROM Users WHERE username = ?", (f'newuser{i}', ))
